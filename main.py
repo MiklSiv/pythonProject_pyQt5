@@ -2,36 +2,41 @@ import sys
 
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
+n = 10
+class Window(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Простая программа")
+        self.setGeometry(300, 200, 300, 200)
+
+        self.add_text = QtWidgets.QLabel(self)
+
+        self.text = QtWidgets.QLabel(self)
+        self.text.setText('Просто текст')
+        self.text.move(100, 50)
+        self.text.adjustSize()
+        self.btn = QtWidgets.QPushButton(self)
+        self.btn.setText('Нажми на меня')
+        self.btn.move(50, 100)
+        self.btn.setFixedWidth(200)
+        self.btn.clicked.connect(self.add)
+
+    def add(self):
+        global n
+        n += 10
+        self.add_text.setText('Просто текст 67')
+        self.add_text.move(100, n)
+        self.add_text.adjustSize()
 
 
-def add():
-    print("12345")
+
+
+
 
 def app():
     app = QApplication(sys.argv)
-    window1 = QMainWindow()
-    window2 = QMainWindow()
-
-    window1.setWindowTitle("Простая программа")
-    #window2.setWindowTitle("Простая программа 2")
-    window1.setGeometry(300, 200, 300, 200)
-    #window2.setGeometry(300, 600, 400, 200)
-
-    text = QtWidgets.QLabel(window1)
-    text.setText('Просто текст')
-    text.move(100, 50)
-    text.adjustSize()
-
-    btn = QtWidgets.QPushButton(window1)
-    btn.setText('Нажми на меня')
-    btn.move(50, 100)
-    btn.setFixedWidth(200)
-    btn.clicked.connect(add)
-
-
-    #window2.show()
-    window1.show()
-
+    window = Window()
+    window.show()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
