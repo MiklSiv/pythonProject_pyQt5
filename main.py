@@ -1,7 +1,8 @@
 import sys
-
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
+
+
 n = 10
 class Window(QMainWindow):
     def __init__(self):
@@ -24,7 +25,8 @@ class Window(QMainWindow):
     def add(self):
         global n
         n += 10
-        self.add_text.setText('Просто текст 67')
+
+        self.add_text.setText("ВАААКПРЕ")
         self.add_text.move(100, n)
         self.add_text.adjustSize()
 
