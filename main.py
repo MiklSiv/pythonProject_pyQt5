@@ -37,7 +37,8 @@ class Window(QMainWindow):
 
 def app():
     app = QApplication(sys.argv)
-    window = Window()
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_
     window.show()
     sys.exit(app.exec_())
 

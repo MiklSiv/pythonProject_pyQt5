@@ -1,6 +1,5 @@
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-import  sys
+import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 
 
@@ -8,14 +7,14 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(300, 400)
+        MainWindow.resize(385, 400)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(660, 70, 72, 21))
         self.label.setObjectName("label")
         self.displey = QtWidgets.QLabel(self.centralwidget)
-        self.displey.setGeometry(QtCore.QRect(0, 0, 300, 55))
+        self.displey.setGeometry(QtCore.QRect(0, 0, 385, 55))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.displey.setFont(font)
@@ -122,10 +121,21 @@ class Ui_MainWindow(object):
         self.btn_3.setFont(font)
         self.btn_3.setStyleSheet("background-color: rgb(255, 170, 0);")
         self.btn_3.setObjectName("btn_3")
+        self.btn_sum = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_sum.setGeometry(QtCore.QRect(300, 55, 85, 85))
+        font = QtGui.QFont()
+        font.setPointSize(18)
+        font.setBold(True)
+        font.setWeight(75)
+        self.btn_sum.setFont(font)
+        self.btn_sum.setStyleSheet("background-color: rgb(255, 170, 0);")
+        self.btn_sum.setObjectName("btn_sum")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.add_fun()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -143,12 +153,27 @@ class Ui_MainWindow(object):
         self.btn_9.setText(_translate("MainWindow", "9"))
         self.btn_6.setText(_translate("MainWindow", "6"))
         self.btn_3.setText(_translate("MainWindow", "3"))
+        self.btn_sum.setText(_translate("MainWindow", "+"))
+        #self.btn_minus.setText(_translate("MainWindow", "-"))
+        #self.btn_dev.setText(_translate("MainWindow", "/")
+        #self.btn_add.setText(_translate("MainWindow", "*"))
+
+    def add_fun(self):
+        self.btn_3.clicked.connect(lambda: self.write_num(self.btn_3.text()))
+
+    def write_num(self, number):
+        self.displey.setText(self.displey.text() + number)
+
+
+
 
 
 def app():
-    app = QApplication(sys.argv)
-    window = Ui_MainWindow()
-    window.show()
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
